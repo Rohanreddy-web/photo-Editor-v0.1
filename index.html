@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Editor</title>
+    <style>
+        :root {
+            --primary: #2a2a72;
+            --secondary: #009ffd;
+            --accent: #ff0076;
+            --bg: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: white;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .image-container {
+            max-width: 800px;
+            width: 90%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 70vh;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .rx {
+            background: var(--secondary);
+        }
+
+        .ry {
+            background: #00c853;
+        }
+
+        .rd {
+            background: var(--accent);
+        }
+
+        .rh {
+            background: #ff9800;
+        }
+
+        .re {
+            background: #666;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-appearance: none;
+            border-radius: 2px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--secondary);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        label {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5rem;
+            }
+
+            .image-container,
+            .controls {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="image-container">
+        <div class="upload-container">
+            <input type="file" id="fileInput" accept="image/*" class="hidden">
+            <label for="fileInput" id="uploadButton">Upload Photo</label>
+            <div id="previewContainer">
+                <img id="preview" src="#" alt="Image preview">
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="button-group">
+            <button class="rx">↻ Right</button>
+            <button class="ry">↺ Left</button>
+            <button class="rd">↕ Flip</button>
+            <button class="re">🔄 Reset</button>
+        </div>
+
+        <hr>
+
+        <label for="op">Opacity</label>
+        <input type="range" id="op" min="0" max="100" step="1" value="100">
+
+        <hr>
+
+        <label for="bg">Brightness</label>
+        <input type="range" id="bg" min="0" max="200" step="1" value="100">
+
+        <hr>
+
+        <label for="sa">Saturation</label>
+        <input type="range" id="sa" min="0" max="200" step="1" value="100">
+        <script src="index.js"></script>
+    </div>
